@@ -19,7 +19,10 @@
             <img class="w-100" @if ( $project->thumb == '' ) src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIU04WE68MpK7kIJ_kHfCEY5NFXNegUYUJ8-pFSM7uEg&s" @endif alt="">
         </div>
         <div class="w-50 d-flex flex-column justify-content-between">
-            <h5>Descrizione: <p class="d-inline">{{ $project->description }}</p></h5>
+            <div>
+                <h5>Descrizione: <p class="d-inline">{{ $project->description }}</p></h5>
+                <div class="badge fs-5 p-0">{!! $project->type->getBadge() !!}</div>
+            </div>
             <div class="d-flex justify-content-between align-items-center">
                 <h6 class="m-0">Data di pubblicazione: <p class="d-inline m-0">{{ $project->updated_at }}</p></h6>
                 <a href="https://github.com/Luca10992?tab=repositories" target="blank">

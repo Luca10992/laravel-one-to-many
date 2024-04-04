@@ -6,8 +6,16 @@
         class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a @if(Route::currentRouteName()=='admin.projects.index' ) class="nav-link active" @endif class="nav-link" href="{{ route('admin.projects.index') }}">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a @if(Route::currentRouteName()=='admin.types.index' ) class="nav-link active" @endif class="nav-link" href="{{ route('admin.types.index') }}">Types</a>
+        </li>
+      </ul>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           @guest
             <li class="nav-item">
               <a class="nav-link" href="{{ route('login') }}">Login</a>
@@ -17,10 +25,7 @@
                 <a class="nav-link" href="{{ route('register') }}">Register</a>
               </li>
             @endif
-          @else
-            <li class="nav-item">
-              <a @if(Route::currentRouteName()=='admin.projects.index' ) class="nav-link active" @endif class="nav-link" href="{{ route('admin.projects.index') }}">Projects</a>
-            </li>
+            @else
             <li class="nav-item dropdown">
               <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                 href="#" id="navbarDropdown" role="button" v-pre>

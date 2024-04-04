@@ -6,7 +6,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <meta content="{{ csrf_token() }}" name="csrf-token">
-    <title>Boolfolio @yield('title', 'Home') </title>
+    <link rel="shortcut icon" href="./icon-bear.png" type="image/x-icon">
+    <title>Boolfolio @yield('title', '| Home') </title>
 
     @vite('resources/js/app.js')
 

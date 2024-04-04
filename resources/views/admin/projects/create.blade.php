@@ -8,9 +8,20 @@
     <form class="d-flex flex-column gap-3" action="{{ route('admin.projects.store') }}" method="POST">
         @csrf
 
-        <div>
-            <label for="title">Nome Progetto</label>
-            <input class="form-control" type="text" name="title" id="title" required>
+        <div class="row">
+            <div class="col-8">
+                <label for="title">Nome Progetto</label>
+                <input class="form-control" type="text" name="title" id="title" required>
+            </div>
+            <div class="col-4">
+                <label for="type_id">Tipologia Progetto</label>
+                <select class="form-select" name="type_id" id="type_id">
+                    <option class="d-none" selected="">Seleziona la tipologia</option>
+                    <option value="Fullstack">Fullstack</option>
+                    <option value="FrontEnd">FrontEnd</option>
+                    <option value="BackEnd">BackEnd</option>
+                </select>
+            </div>
         </div>
         <div>
             <label for="thumb">Anteprima Progetto</label>

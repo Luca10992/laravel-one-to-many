@@ -36,5 +36,13 @@ a {
                 font-weight: 500;
             }
         }
+
+        .table {
+            a:hover i,
+            .btn:hover i {
+                background-color: rgba(186, 186, 186, 0.2);
+                border-radius: 8px;
+            }
+        }
     }
 }
