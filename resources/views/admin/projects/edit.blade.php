@@ -9,9 +9,23 @@
         @csrf
         @method('PATCH')
 
-        <div>
-            <label for="title">Nome Progetto</label>
-            <input class="form-control" type="text" name="title" id="title" value="{{ $project->title }}" required>
+        <div class="row">
+            <div class="col-8">
+                <label for="title">Nome Progetto</label>
+                <input class="form-control @error ('title') is-invalid @enderror" type="text" name="title" id="title" value="{{ old('title', $project['title']) }}">
+                @error ('title')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-4">
+                <label for="type_id">Tipologia Progetto</label>
+                <select class="form-select" name="type_id" id="type_id">
+                    <option class="d-none" selected="">Seleziona la tipologia</option>
+                    @foreach ($types as $type)
+                    <option value="{{ $type->id }}">{{ $type->label }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
         <div>
             <label for="thumb">Anteprima Progetto</label>

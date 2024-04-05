@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -24,7 +27,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $project = new Project;
+        $types = Type::all();
+        return view('admin.projects.create', compact('project', 'types'));
     }
 
     /**
@@ -32,15 +37,16 @@ class ProjectController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
+        $request->validated();
         $data = $request->all();
 
         $project = new Project();
         $project->fill($data);
         $project->save();
 
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.index', $project);
     }
 
     /**
@@ -60,7 +66,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -69,13 +76,15 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Project  $project
      */
-    public function update(Request $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
+        $request->validated();
+
         $data = $request->all();
 
         $project->update($data);
 
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.index', $project);
     }
 
     /**

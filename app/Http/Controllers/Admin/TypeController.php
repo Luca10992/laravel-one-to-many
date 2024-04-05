@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTypeRequest;
+use App\Http\Requests\UpdateTypeRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,7 @@ class TypeController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        return view('admin.types.create', compact('types'));
     }
 
     /**
@@ -33,15 +35,16 @@ class TypeController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      */
-    public function store(Request $request)
+    public function store(StoreTypeRequest $request)
     {
+        $request->validated();
         $data = $request->all();
 
         $type = new Type();
         $type->fill($data);
         $type->save();
 
-        return redirect()->route('admin.types.index');
+        return redirect()->route('admin.types.index', $type);
     }
 
     /**
@@ -70,13 +73,14 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Type  $type
      */
-    public function update(Request $request, Type $type)
+    public function update(UpdateTypeRequest $request, Type $type)
     {
+        $request->validated();
         $data = $request->all();
 
         $type->update($data);
 
-        return redirect()->route('admin.types.index');
+        return redirect()->route('admin.types.index', $type);
     }
 
     /**

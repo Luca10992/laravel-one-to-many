@@ -11,11 +11,17 @@
 
         <div class="col-10">
             <label for="label">Nome Tipologia</label>
-            <input class="form-control" type="text" name="label" id="label"  value="{{ $type->label }}">
+            <input class="form-control @error ('label') is-invalid @enderror" type="text" name="label" id="label" value="{{ old('label', $type['label']) }}">
+            @error ('label')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
         <div class="col-2">
             <label for="color">Colore Tipologia</label>
-            <input class="form-control my-2" type="color" name="color" id="color" value="{{ $type->color }}">
+            <input class="form-control my-2" type="color" name="color" id="color" value="{{ old('color', $type['color']) }}">
+            @error ('color')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
         <div>
             <button class="btn btn-success">Save</button>
